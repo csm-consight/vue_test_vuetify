@@ -1,3 +1,5 @@
 module.exports = {
-	publicPath: '/vue_test.github.io/'
+	outputDir: './docs',
+	publicPath: '/vue_test_vuetify/'
+
 };
