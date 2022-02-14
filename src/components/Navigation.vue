@@ -77,13 +77,45 @@
           <v-list-item-title>파트너 관리</v-list-item-title>
         </template>
 
-        <v-list-group no-action sub-group class="noneicon" v-for="(b,i) in 파트너관리" :key="i">
+        <router-link to="/partner">
+        <v-list-group no-action sub-group class="noneicon">
           <template v-slot:activator >
             <v-list-item-content>
-              <v-list-item-title>{{b}}</v-list-item-title>
+              <v-list-item-title>파트너 목록</v-list-item-title>
             </v-list-item-content>
           </template>
         </v-list-group>
+        </router-link>
+
+        <router-link to="/2">
+        <v-list-group no-action sub-group class="noneicon">
+          <template v-slot:activator >
+            <v-list-item-content>
+              <v-list-item-title>상품관리</v-list-item-title>
+            </v-list-item-content>
+          </template>
+        </v-list-group>
+        </router-link>
+
+        <router-link to="/2">
+        <v-list-group no-action sub-group class="noneicon">
+          <template v-slot:activator >
+            <v-list-item-content>
+              <v-list-item-title>로그인 기록</v-list-item-title>
+            </v-list-item-content>
+          </template>
+        </v-list-group>
+        </router-link>
+
+        <router-link to="/2">
+        <v-list-group no-action sub-group class="noneicon">
+          <template v-slot:activator >
+            <v-list-item-content>
+              <v-list-item-title>매출 통계</v-list-item-title>
+            </v-list-item-content>
+          </template>
+        </v-list-group>
+        </router-link>
 
       </v-list-group>
 

@@ -1,48 +1,47 @@
 <template>
 <div>
 
-  <UserSerch />
- 
-	<section class="userlist_wrap">
+	<section class="partnerlist_wrap">
      
 		<article class="top_menu">
-			<h2>회원목록</h2>
+			<h2>파트너사 목록</h2>
+			<div class="search_area">
+				<v-autocomplete chips clearable deletable-chips dense :items="categoris" placeholder="검색조건을 입력하세요."></v-autocomplete>
+			</div>
 		</article>
     <form>
-    <Modal :모달창상태="모달창상태" :누른것="누른것" :유저정보="유저정보" @closeModal="모달창상태 = false" />
+    <ModalPart :모달창상태="모달창상태" :누른것="누른것" :유저정보="유저정보" @closeModal="모달창상태 = false" />
     <table class="user_table">
       <thead>
         <tr class="table_header">
           <th style="width:5%;">선택</th>
-          <th>회원구분</th>
-          <th>아이디(이메일)</th>
           <th>이름</th>
-          <th>성별</th>
-          <th>닉네임</th>
-          <th>생년월일</th>
+          <th>회사명</th>
+          <th>아이디</th>
+          <th>사업자등록번호</th>
           <th>전화번호</th>
-          <th>최근접속</th>
+          <th>등록된 상품 갯수</th>
           <th>추가정보</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(a,i) in paginatedData" :key="i" class="table_body">
           <td><input type="checkbox" name="checks" v-model='selectUser' :value="i" @change="checkeds" class="ck"></td>
-          <td>{{a.usertype}}</td>
-          <td>{{a.mail}}</td>
           <td>{{a.name}}</td>
-          <td>{{a.gender}}</td>
+          <td>{{a.mail}}</td>
           <td>{{a.nixname}}</td>
-          <td>{{a.age}}</td>
+          <td>{{a.gender}}</td>
           <td>{{a.telenumber}}</td>
-          <td>{{a.lastaccess}}</td>
+          <td>{{a.age}}</td>
           <td><span @click="모달창상태 = true; 누른것 = 유저정보[i].id">상세정보</span></td>
         </tr>
       </tbody>
     </table> 
 
     <div class="allsel_del_area">
-      <input type="checkbox" value="i" v-model='checked' id="allcheck" @change="allcheck"><label id="allcheck" for="allcheck">전체선택</label>
+      <input type="checkbox" value="" v-model='checked' id="allcheck" @change="allcheck"><label id="allcheck" for="allcheck">전체선택</label>
+      <button class="exceldown" @click="excelDown">엑셀 다운로드</button>
+      <button class="messagepost" @click="massgePost">선택한 사람에게 문자 발송하기</button>
       <button class="delete" @click="userDelete">삭제</button>
     </div>
     </form>
@@ -61,8 +60,7 @@
 </template>
 
 <script>
-import Modal from './Modal_user_info.vue'
-import UserSerch from './UserSerch.vue';
+import ModalPart from './Modal_partner_info'
 import $ from 'jquery';
 export default {
   name:'UserList',
@@ -72,8 +70,10 @@ export default {
       page: 1,
       모달창상태 : false,
       누른것 : 0,
-      pageSize: 5,
+      pageSize: 10,
       pageNum: 0,
+      categoris: ['아이디검색', '회사명검색', '전화번호검색', '이름검색', '사업자번호검색', ],
+      데이터갯수 : 0,
     }),
   props : {
 		유저정보 : Array,  
@@ -107,7 +107,18 @@ export default {
             //    return false
             // })
     },
-
+	excelDown(){
+            if ( $('.table_body input:checkbox[name="checks"]:checked').length === 0 ){
+              alert('다운 받을 항목을 선택해주세요.')
+              return;
+            }
+    },
+	massgePost(){
+            if ( $('.table_body input:checkbox[name="checks"]:checked').length === 0 ){
+              alert('보낼 항목을 선택해주세요.')
+              return;
+            }
+    },
 
     nextPage () {
       this.pageNum += 1;
@@ -118,8 +129,7 @@ export default {
 
 	},
   components: { // 컴포넌트 불러온뒤 여기에 적어야함
-    Modal,
-    UserSerch,
+    ModalPart
   },
   computed: {
     pageCount () {
@@ -149,7 +159,7 @@ export default {
 </script>
 
 <style>
-.userlist_wrap {
+.partnerlist_wrap {
 	padding:20px; 
 	width: 100%; min-width:550px;
 	background:#fff; box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
@@ -205,19 +215,28 @@ export default {
   vertical-align:sub; display:none;
 }
 .allsel_del_area label {
-  padding:6px 15px; float: left;
+  padding:6px 15px; float: left; margin-right:5px;
   height: 30px;
   color: #fff;
   background:#1976D2; border-radius: 3px;
   cursor: pointer;
 }
 .allsel_del_area::after {content: ''; display: block;clear: both;}
-.allsel_del_area .delete {
+
+
+.allsel_del_area .delete,.exceldown,.messagepost {
  padding:6px 10px; float:right;
- width:50px; color:#fff; text-align: center;
+ color:#fff; text-align: center;
  background: #1976D2; border-radius: 3px;
  cursor: pointer;
 }
+.allsel_del_area .exceldown {
+	float:left; margin-right:5px;
+	padding-left: 30px;
+	color: #fff;
+	background: #00914a url(../../public/excel.png)no-repeat 8px center; 
+	}
+.allsel_del_area .messagepost {float:left; background:#607d8b; }
 .allsel_del_area .delete:hover { background:#607d8b;}
 
 .btn-cover {

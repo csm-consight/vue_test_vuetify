@@ -19,7 +19,7 @@
 						<td class="tb_name">이름</td>
 						<td class="tb_info"><input type="text" :value="유저정보[누른것].name"></td>
 						<td class="tb_name">성별</td>
-						<td class="tb_info">{{유저정보[누른것].sex}}</td>
+						<td class="tb_info">{{유저정보[누른것].gender}}</td>
 					</tr>
 					<tr>
 						<td class="tb_name">회원 구분</td>
@@ -49,7 +49,7 @@
 						<td class="tb_name">입주 예정 주소</td>
 						<td class="tb_info"><input type="text" name="addr" :value="유저정보[누른것].adrr" @click="searchPostcode"></td>
 						<td class="tb_name">상세주소</td>
-						<td class="tb_info"><input type="text" :value="유저정보[누른것].adrr"></td>
+						<td class="tb_info"><input type="text" name="addr" :value="유저정보[누른것].adrr"></td>
 						<!-- <td class="tb_info" colspan="3">인천광역시 검단 신도시 어쭈구 저쭈구 자이 아파트 104동 206호</td> -->
 					</tr>
 				</tbody>

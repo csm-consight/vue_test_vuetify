@@ -2,12 +2,9 @@
 <div id="wrap">
   <v-app id="app" class="app_wrap">
     <Navigation />
-    <Headers style="display:none;" />
     <section class="container_box">
-      <Datalist style="display:none;" />
       <!-- <UserList :유저정보="유저정보" /> -->
       <router-view :유저정보="유저정보"></router-view>
-
     </section>
     
   </v-app>
@@ -17,8 +14,6 @@
 
 <script>
 import Navigation from './components/Navigation.vue';
-import Headers from './components/Header.vue';
-import Datalist from './components/Datelist.vue';
 // import UserList from './components/UserList.vue';
 
 import 유저정보 from './assets/testdata.js';
@@ -27,20 +22,19 @@ import $ from 'jquery';
 
 export default {
   name: 'App',
+  data: () => ({
+    테스트용 : 0,
+    유저정보 : 유저정보,
+  }),
   components: {
     Navigation,
-    Headers,
-    Datalist,
   },
   methods: {
     clickEvent(){
       $('button').css({color:'red'})
     }
   },
-  data: () => ({
-    테스트용 : 0,
-    유저정보 : 유저정보,
-  }),
+  
 };
 </script>
 <style>

@@ -144,7 +144,9 @@ export default {
 	line-height:21px !important;
 }
 .v-select__selections { min-height: 35px !important;}
-
+.v-text-field.v-input--dense:not(.v-text-field--outlined) input {
+	padding: 10px !important;
+}
 
 /* 회원 체크박스 */
 .userserch_wrap .user_chk_area {margin-top: 15px;}

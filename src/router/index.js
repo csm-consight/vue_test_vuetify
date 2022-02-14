@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import UserList from '../components/UserList.vue';
-
+import PartnerList from '../components/PartnerList.vue'
 
 Vue.use(VueRouter)
 
@@ -10,6 +10,11 @@ const routes = [
     path: '/',
     name: 'userserch',
     component: UserList
+  },
+  {
+    path: '/partner',
+    name: 'PartnerList',
+    component: PartnerList
   },
 
   // {
