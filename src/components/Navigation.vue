@@ -25,11 +25,47 @@
           </v-list-item>
 
         </v-list-group> -->
-
-        <v-list-group no-action sub-group class="noneicon" v-for="(a,i) in 회원목록" :key="i">
+        
+        <router-link to="/">
+        <v-list-group no-action sub-group class="noneicon" >
           <template v-slot:activator >
             <v-list-item-content>
-              <v-list-item-title>{{a}}</v-list-item-title>
+              <v-list-item-title>회원목록</v-list-item-title>
+            </v-list-item-content>
+          </template>
+        </v-list-group>
+        </router-link>
+
+        <router-link to="/1">
+        <v-list-group no-action sub-group class="noneicon" >
+          <template v-slot:activator >
+            <v-list-item-content>
+              <v-list-item-title>회원등록</v-list-item-title>
+            </v-list-item-content>
+          </template>
+        </v-list-group>
+        </router-link>
+
+        <v-list-group no-action sub-group class="noneicon" >
+          <template v-slot:activator >
+            <v-list-item-content>
+              <v-list-item-title>회원탈퇴내역</v-list-item-title>
+            </v-list-item-content>
+          </template>
+        </v-list-group>
+
+        <v-list-group no-action sub-group class="noneicon" >
+          <template v-slot:activator >
+            <v-list-item-content>
+              <v-list-item-title>회원가입폼</v-list-item-title>
+            </v-list-item-content>
+          </template>
+        </v-list-group>
+
+        <v-list-group no-action sub-group class="noneicon" >
+          <template v-slot:activator >
+            <v-list-item-content>
+              <v-list-item-title>회원그룹 설정</v-list-item-title>
             </v-list-item-content>
           </template>
         </v-list-group>
@@ -49,8 +85,33 @@
           </template>
         </v-list-group>
 
+      </v-list-group>
+
+           <v-list-group prepend-icon="mdi-account-circle" >
+        <template v-slot:activator>
+          <v-list-item-title>매거진</v-list-item-title>
+        </template>
+
+        <v-list-group no-action sub-group class="noneicon">
+          <template v-slot:activator >
+            <v-list-item-content>
+              <v-list-item-title>매거진 등록</v-list-item-title>
+            </v-list-item-content>
+          </template>
+        </v-list-group>
+
+        <v-list-group no-action sub-group class="noneicon">
+          <template v-slot:activator >
+            <v-list-item-content>
+              <v-list-item-title>매거진 리스트</v-list-item-title>
+            </v-list-item-content>
+          </template>
+        </v-list-group>
 
       </v-list-group>
+
+
+
     </v-list>
   </v-card>
 </template>

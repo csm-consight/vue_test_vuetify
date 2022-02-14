@@ -128,15 +128,6 @@ export default {
 	background:#fff; box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
 	border-radius:5px;
 }
-.top_menu {
-	padding-bottom:10px; 
-	box-sizing: border-box;
-	border-bottom:1px solid #e5e5e5;
-}
-.top_menu h2 {
-	font-size:20px;line-height:35px;
-	display:inline;
-}
 
 /* 검색창 */
 .search_area { float:right;}

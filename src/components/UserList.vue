@@ -1,6 +1,11 @@
 <template>
-  
+<div>
+
+  <UserSerch />
+ 
 	<section class="userlist_wrap">
+     
+
 		<article class="top_menu">
 			<h2>회원목록</h2>
 		</article>
@@ -22,20 +27,20 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(a,i) in 유저정보" :key="i" class="table_body">
+        <tr v-for="(a,i) in paginatedData" :key="i" class="table_body">
           <td><input type="checkbox" name="checks" v-model='selectUser' :value="i" @change="checkeds" class="ck"></td>
-          <td>{{유저정보[i].usertype}}</td>
-          <td>{{유저정보[i].mail}}</td>
-          <td>{{유저정보[i].name}}</td>
-          <td>{{유저정보[i].sex}}</td>
-          <td>{{유저정보[i].nixname}}</td>
-          <td>{{유저정보[i].age}}</td>
-          <td>{{유저정보[i].telenumber}}</td>
-          <td>{{유저정보[i].lastaccess}}</td>
+          <td>{{a.usertype}}</td>
+          <td>{{a.mail}}</td>
+          <td>{{a.name}}</td>
+          <td>{{a.gender}}</td>
+          <td>{{a.nixname}}</td>
+          <td>{{a.age}}</td>
+          <td>{{a.telenumber}}</td>
+          <td>{{a.lastaccess}}</td>
           <td><span @click="모달창상태 = true; 누른것 = 유저정보[i].id">상세정보</span></td>
         </tr>
       </tbody>
-    </table>
+    </table> 
 
     <div class="allsel_del_area">
       <input type="checkbox" value="i" v-model='checked' id="allcheck" @change="allcheck"><label id="allcheck" for="allcheck">전체선택</label>
@@ -43,14 +48,22 @@
     </div>
     </form>
 
-    <v-pagination v-model="page" :length="7" :total-visible="5"></v-pagination>
+
+    <div class="btn-cover">
+      <button :disabled="pageNum === 0" @click="prevPage" class="page-btn">이전</button>
+      <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }} 페이지</span>
+      <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn">다음</button>
+    </div>
+    <!-- <v-pagination v-model="page" :length="7" :total-visible="5"></v-pagination> -->
 
 		
 	</section>
+</div>
 </template>
 
 <script>
 import Modal from './Modal_user_info.vue'
+import UserSerch from './UserSerch.vue';
 import $ from 'jquery';
 export default {
   name:'UserList',
@@ -60,6 +73,8 @@ export default {
       page: 1,
       모달창상태 : false,
       누른것 : 0,
+      pageSize: 5,
+      pageNum: 0,
     }),
   props : {
 		유저정보 : Array,  
@@ -94,13 +109,43 @@ export default {
             // })
     },
 
-	},
-	watch : { 
-		
+
+    nextPage () {
+      this.pageNum += 1;
+    },
+    prevPage () {
+      this.pageNum -= 1;
+    }
+
 	},
   components: { // 컴포넌트 불러온뒤 여기에 적어야함
     Modal,
+    UserSerch,
+  },
+  computed: {
+    pageCount () {
+      let listLeng = this.유저정보.length,
+          listSize = this.pageSize,
+          page = Math.floor(listLeng / listSize);
+          console.log(listLeng)
+          console.log(listSize)
+          console.log('찾기')
+      if (listLeng % listSize > 0) page += 1;
+      
+      
+      /*
+      아니면 page = Math.floor((listLeng - 1) / listSize) + 1;
+      이런식으로 if 문 없이 고칠 수도 있다!
+      */
+      return page;
+    },
+     paginatedData () {
+      const start = this.pageNum * this.pageSize,
+            end = start + this.pageSize;
+      return this.유저정보.slice(start, end);
+    }
   }
+
 }
 </script>
 
@@ -175,4 +220,22 @@ export default {
  cursor: pointer;
 }
 .allsel_del_area .delete:hover { background:#607d8b;}
+
+.btn-cover {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+.btn-cover .page-btn {
+  width: 5rem;
+  height: 2rem;
+  letter-spacing: 0.5px;
+}
+.btn-cover .page-count {
+  padding: 0 1rem;
+}
+
+
+
+
+
 </style>

@@ -5,8 +5,9 @@
     <Headers style="display:none;" />
     <section class="container_box">
       <Datalist style="display:none;" />
-      <UserSerch />
-      <UserList :유저정보="유저정보" />
+      <!-- <UserList :유저정보="유저정보" /> -->
+      <router-view :유저정보="유저정보"></router-view>
+
     </section>
     
   </v-app>
@@ -18,8 +19,7 @@
 import Navigation from './components/Navigation.vue';
 import Headers from './components/Header.vue';
 import Datalist from './components/Datelist.vue';
-import UserList from './components/UserList.vue';
-import UserSerch from './components/UserSerch.vue';
+// import UserList from './components/UserList.vue';
 
 import 유저정보 from './assets/testdata.js';
 
@@ -31,8 +31,6 @@ export default {
     Navigation,
     Headers,
     Datalist,
-    UserList,
-    UserSerch
   },
   methods: {
     clickEvent(){
