@@ -51,6 +51,7 @@
     <div class="list_btn_area">
       <input type="checkbox" value="" v-model='checked' id="allcheck" @change="allcheck"><label id="allcheck" for="allcheck">전체선택</label>
       <button class="delete" @click="userDelete">삭제</button>
+      <button class="closure">마감</button>
     </div>
     </form>
 
@@ -162,7 +163,14 @@ export default {
   color: #fff; cursor: pointer;
   background:#1976D2; border-radius: 3px;
   }
-  .confirm_change:hover {
+.confirm_change:hover {
 	background:#607d8b;
-  }
+}
+.list_btn_area .closure {
+ float:right; padding:6px 10px; margin-right: 5px;
+ width:50px; color:#fff; text-align: center;
+ background: #607d8b; border-radius: 3px;
+ cursor: pointer;
+}
+.list_btn_area .closure:hover {background:#495f6a}
 </style>
