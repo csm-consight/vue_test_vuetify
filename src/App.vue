@@ -40,7 +40,7 @@ export default {
 <style>
 html,body { width:100%; height:100%; }
 body,div,p,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,form,fieldset,button,input { margin:0; padding:0; }
-body,h1,h2,h3,h4,input,button { font-family: "Roboto", sans-serif;  font-size:12px; }
+body,h1,h2,h3,h4,input,button,p,dl,dt,dd,ul,li,td,tr,span { font-family: "Roboto",'Noto Sans KR', sans-serif;  font-size:12px; }
 ul,li,ol { list-style:none; }
 img,fieldset,iframe { border:0; }
 img { vertical-align:top; }

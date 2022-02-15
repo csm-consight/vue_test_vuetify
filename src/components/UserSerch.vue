@@ -180,9 +180,12 @@ export default {
 }
 .user_chk_area table .ageform {
 	padding:5px;margin-right: 4px;
-	width:120px; height:20px;
+	width:120px;
 	box-sizing: content-box;
 	border: solid 1px #dadada;
+}
+.user_chk_area table select {
+	background:url(../../public/arrow.png)no-repeat right 8px center;
 }
 .user_chk_area .btn_area {
 	display: flex; justify-content: center;

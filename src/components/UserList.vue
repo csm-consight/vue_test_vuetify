@@ -3,14 +3,14 @@
 
   <UserSerch />
  
-	<section class="userlist_wrap">
+	<section class="list_wrap">
      
 		<article class="top_menu">
 			<h2>회원목록</h2>
 		</article>
     <form>
     <Modal :모달창상태="모달창상태" :누른것="누른것" :유저정보="유저정보" @closeModal="모달창상태 = false" />
-    <table class="user_table">
+    <table class="list_table">
       <thead>
         <tr class="table_header">
           <th style="width:5%;">선택</th>
@@ -27,7 +27,7 @@
       </thead>
       <tbody>
         <tr v-for="(a,i) in paginatedData" :key="i" class="table_body">
-          <td><input type="checkbox" name="checks" v-model='selectUser' :value="i" @change="checkeds" class="ck"></td>
+          <td><input type="checkbox" name="checks" v-model='selectUser' :value="i" class="ck"></td>
           <td>{{a.usertype}}</td>
           <td>{{a.mail}}</td>
           <td>{{a.name}}</td>
@@ -41,7 +41,7 @@
       </tbody>
     </table> 
 
-    <div class="allsel_del_area">
+    <div class="list_btn_area">
       <input type="checkbox" value="i" v-model='checked' id="allcheck" @change="allcheck"><label id="allcheck" for="allcheck">전체선택</label>
       <button class="delete" @click="userDelete">삭제</button>
     </div>
@@ -88,13 +88,13 @@ export default {
           this.selectUser = []
         } 
     },
-    checkeds(event){ // 체크 확인
-      for(let i=0; i < this.selectUser.length; i++){
-          if(this.selectUser[i] !== event.target.checked){
-          console.log(this.selectUser[i])
-          }
-      }
-    },
+    // checkeds(event){ // 체크 확인
+    //   for(let i=0; i < this.selectPartner.length; i++){
+    //       if(this.selectPartner[i] !== event.target.checked){
+    //       console.log(this.selectPartner[i])
+    //       }
+    //   }
+    // },
     userDelete(){
             if ( $('.table_body input:checkbox[name="checks"]:checked').length === 0 ){
               alert('삭제하실 정보를 체크해주세요.')
@@ -149,7 +149,7 @@ export default {
 </script>
 
 <style>
-.userlist_wrap {
+.list_wrap {
 	padding:20px; 
 	width: 100%; min-width:550px;
 	background:#fff; box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
@@ -167,7 +167,7 @@ export default {
 }
 
 /* 테이블 */
-.user_table {
+.list_table {
   margin-bottom: 10px;
   width:100%;
   white-space: nowrap;
@@ -182,8 +182,8 @@ export default {
   border: 1px solid #dee2e6;
 }
 .table_body td {
-  text-align: center;
   padding:12px;
+  font-size:13px; font-weight: 500; text-align: center;
   border: 1px solid #dee2e6;
 }
 .table_body:hover {
@@ -199,26 +199,22 @@ export default {
   background:#1976D2; border-radius: 3px;
 }
 .table_body td > span:hover { background:#607d8b;}
-.allsel_del_area input {
-  margin:0 5px;
-  width:15px; height:15px;
-  vertical-align:sub; display:none;
+.list_btn_area input {display:none;
 }
-.allsel_del_area label {
+.list_btn_area label {
   padding:6px 15px; float: left;
-  height: 30px;
   color: #fff;
   background:#1976D2; border-radius: 3px;
   cursor: pointer;
 }
-.allsel_del_area::after {content: ''; display: block;clear: both;}
-.allsel_del_area .delete {
+.list_btn_area::after {content: ''; display: block;clear: both;}
+.list_btn_area .delete {
  padding:6px 10px; float:right;
  width:50px; color:#fff; text-align: center;
  background: #1976D2; border-radius: 3px;
  cursor: pointer;
 }
-.allsel_del_area .delete:hover { background:#607d8b;}
+.list_btn_area .delete:hover { background:#607d8b;}
 
 .btn-cover {
   margin-top: 1.5rem;

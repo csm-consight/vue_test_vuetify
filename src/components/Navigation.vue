@@ -87,7 +87,7 @@
         </v-list-group>
         </router-link>
 
-        <router-link to="/2">
+        <router-link to="/itemmanage">
         <v-list-group no-action sub-group class="noneicon">
           <template v-slot:activator >
             <v-list-item-content>

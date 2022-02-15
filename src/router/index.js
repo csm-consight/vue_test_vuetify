@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import UserList from '../components/UserList.vue';
-import PartnerList from '../components/PartnerList.vue'
+import PartnerList from '../components/PartnerList.vue';
+import ItemManage from '../components/Item_Manage.vue';
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,11 @@ const routes = [
     path: '/partner',
     name: 'PartnerList',
     component: PartnerList
+  },
+  {
+    path: '/itemmanage',
+    name: 'ItemManage',
+    component: ItemManage
   },
 
   // {
